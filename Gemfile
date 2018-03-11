@@ -9,7 +9,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
-gem 'bootsnap', '>= 1.2.0', require: false
+# gem 'bootsnap', '>= 1.2.0', require: false
+gem 'bootsnap', github: 'ojab/bootsnap', require: false
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'octicons_helper'

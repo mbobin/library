@@ -10,6 +10,13 @@ GIT
       pdf-reader (~> 2.0)
 
 GIT
+  remote: https://github.com/ojab/bootsnap.git
+  revision: ecf74445cc8a0808063060b188e45247d0c15fae
+  specs:
+    bootsnap (1.2.0)
+      msgpack (~> 1.0)
+
+GIT
   remote: https://github.com/untitledkingdom/mina-puma.git
   revision: 120b72a889cc977a1572218a4e7b9b71036e0f8d
   specs:
@@ -71,8 +78,6 @@ GEM
     autoprefixer-rails (8.1.0)
       execjs
     bindex (0.5.0)
-    bootsnap (1.2.0)
-      msgpack (~> 1.0)
     bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
@@ -248,7 +253,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootsnap (>= 1.2.0)
+  bootsnap!
   bootstrap (~> 4.0.0)
   byebug
   coffee-rails (~> 4.2)
