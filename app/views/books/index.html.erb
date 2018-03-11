@@ -1,0 +1,9 @@
+<% if @books.any? %>
+    <% @books.each_slice(2) do |books| %>
+      <div class="card-deck mt-3">
+        <%= render partial: "book", collection: books, as: :book %>
+      </div>
+    <% end %>
+<% else %>
+  <p class="placeholder">There are no books yet.</p>
+<% end %>

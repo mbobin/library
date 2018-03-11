@@ -1,0 +1,5 @@
+<% @cluster.each do |cloud| %>
+  <%= link_to(books_path(tag: cloud["word"])) do %>
+    <%= content_tag(:span, cloud['word'], class: "badge badge-secondary mt-2", style: "font-size: 1.#{cloud['frequency'] / 10}rem") %>
+  <% end %>
+<% end %>
