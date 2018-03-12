@@ -10,6 +10,7 @@ module Pipeline
       options = Pipeline::AddBook.call(options)
       options = Pipeline::AddVersion.call(options)
       options = Pipeline::AddDocument.call(options)
+      options = Pipeline::RemoveFile.call(options)
       options
 
     rescue => error
