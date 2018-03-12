@@ -13,7 +13,11 @@ module Pipeline
     end
 
     def remove_file
-      File.unlink(@options["file_path"].to_s)
+      FileUtils.mv(@options["file_path"].to_s, backup_path)
+    end
+
+    def backup_path
+      "/media/marius/storage/books-bkp/"
     end
   end
 end
