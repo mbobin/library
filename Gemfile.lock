@@ -86,6 +86,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    daemons (1.2.6)
     delayed_job (4.1.4)
       activesupport (>= 3.0, < 5.2)
     delayed_job_active_record (4.1.2)
@@ -252,6 +253,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0)
   byebug
   coffee-rails (~> 4.2)
+  daemons
   delayed_job_active_record
   isbn_extractor!
   jquery-rails
