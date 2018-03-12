@@ -15,7 +15,7 @@ module Pipeline
     end
 
     def find_by_name
-      Book.search_by_name(@options["name"])
+      Book.search_by_name(@options["name"]).first
     end
 
     def create_book
