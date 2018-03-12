@@ -3,6 +3,7 @@ require 'mina/git'
 require 'mina/chruby'
 require 'mina/bundler'
 require 'mina/puma'
+require 'mina/delayed_job'
 
 set :application_name, 'library'
 set :domain, 'nuc.lan'
@@ -24,6 +25,7 @@ end
 task :setup do
   command %[touch "#{fetch(:shared_path)}/config/database.yml"]
   command %[touch "#{fetch(:shared_path)}/config/secrets.yml"]
+  command %[touch "#{fetch(:shared_path)}/config/storage.yml"]
   command %[touch "#{fetch(:shared_path)}/config/puma.rb"]
 end
 
@@ -40,6 +42,7 @@ task :deploy do
     on :launch do
       in_path(fetch(:current_path)) do
         invoke :'puma:phased_restart'
+        invoke :'delayed_job:restart'
       end
     end
   end

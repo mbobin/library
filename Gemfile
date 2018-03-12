@@ -30,6 +30,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'mina', require: false
   gem 'mina-puma', require: false#, github: 'untitledkingdom/mina-puma'
+  gem 'mina-delayed_job', require: false, github: 'mbobin/mina-delayed_job'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
