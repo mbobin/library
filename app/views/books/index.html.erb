@@ -4,6 +4,7 @@
         <%= render partial: "book", collection: books, as: :book %>
       </div>
     <% end %>
+    <%= paginate @books %>
 <% else %>
   <p class="placeholder">There are no books yet.</p>
 <% end %>

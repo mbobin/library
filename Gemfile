@@ -18,6 +18,7 @@ gem 'isbn_extractor', github: 'mbobin/isbn_extractor'
 gem 'delayed_job_active_record'
 gem 'pry'
 gem 'daemons'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
