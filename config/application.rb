@@ -28,6 +28,8 @@ module Library
     # the framework and any gems in your application.
 
     # Don't generate system test files.
+    config.eager_load_paths << Rails.root.join("app/classes").to_s
+    config.autoload_paths << Rails.root.join("app/classes").to_s
     config.generators.system_tests = nil
     config.active_job.queue_adapter = :delayed_job
   end

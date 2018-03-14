@@ -1,31 +1,16 @@
 <div class="card text-white bg-dark">
   <div class="card-body">
     <h5 class="card-title">
-      <%= book.name %>
+      <%= book.title %>
     </h5>
-    <h6 class="card-subtitle">by <%= book.authors.map(&:name).join(", ") %> - <%= book.isbn %></h6>
+    <h6 class="card-subtitle">by <%= book.author_names %> - <%= book.isbn %></h6>
     <h6 class="card-subtitle mt-2">
-      <% book.pdf_versions.each do |version| %>
-        <% version.documents.each do |document| %>
-          <%= link_to document_path(document), class: "mr-2" do %>
-            <%= octicon("file-pdf", fill: "currentcolor") %>
-          <% end %>
-        <% end %>
-      <% end %>
-
-      <% book.downloadable_versions.each do |version| %>
-        <% version.documents.each do |document| %>
-          <%= link_to download_document_path(document), title: version.book_type, class: "mr-2" do %>
-            <%= octicon("cloud-download", fill: "currentcolor") %>
-          <% end %>
-        <% end %>
-      <% end %>
+      <%= book.link_to_pdf_versions %>
+      <%= book.link_to_downloadable_versions %>
     </h6>
-    <p class="card-text small" title="<%= book.description %>" ><%= book.description.truncate(500) %></p>
+    <p class="card-text small" title="<%= book.description %>" ><%= book.summarization %></p>
   </div>
   <div class="card-footer">
-    <% book.tags.each do |tag| %>
-      <span class="badge badge-light"><%= tag %></span>
-    <% end %>
+    <%= book.tag_badges %>
   </div>
 </div>
