@@ -1,3 +1,11 @@
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <%= link_to "All", logs_path, class: "nav-item nav-link #{'active' if params.slice(:error, :halted).empty?}", role: "tab", aria: { selected: params.empty? } %>
+    <%= link_to "Errors", logs_path(error: ""), class: "nav-item nav-link #{'active' if params.key?(:error)}", role: "tab", aria: { selected: params.key?(:error) } %>
+    <%= link_to "Halted", logs_path(halted: ""), class: "nav-item nav-link #{'active' if params.key?(:halted)}", role: "tab", aria: { selected: params.key?(:halted) } %>
+  </div>
+</nav>
+
 <div id="accordion" class="mt-3">
   <% @logs.each do |log| %>
     <div class="card text-white bg-dark mb-2">
