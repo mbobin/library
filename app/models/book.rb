@@ -9,5 +9,6 @@ class Book < ApplicationRecord
   scope :with_tag, ->(tag) {
     where("? = ANY(tags)", tag)
   }
-  pg_search_scope :search_by_name, against: :name, using: :trigram
+
+  pg_search_scope :search_by_name, against: :name, using: { trigram: { threshold: 0.85 } }
 end
