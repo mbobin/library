@@ -6,7 +6,7 @@ class AddIndexOnBookNames < ActiveRecord::Migration[5.2]
       end
 
       dir.down do
-        execute("DROP INDEX book_names_idx;")
+        execute("DROP INDEX books_on_name_idx;")
       end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_11_191941) do
+ActiveRecord::Schema.define(version: 2018_03_15_195317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2018_03_11_191941) do
     t.text "tags", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "books_on_name_idx", opclass: :gin_trgm_ops, using: :gin
+    t.index ["name", "description"], name: "books_on_name_idx", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "delayed_jobs", force: :cascade do |t|

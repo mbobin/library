@@ -1,10 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    <nav class="navbar navbar-light bg-light">
+      <%= form_with url: books_path, method: :get, local: true, class: "form-inline" do |f| %>
+       <div class="form-group">
+        <%= f.search_field :q, value: params[:q], class: "form-control mr-sm-2", placeholder: "Search", aria: { label: "Search" } %>
+        <%= f.submit "Search", class: "btn btn-outline-dark my-2 my-sm-0" %>
+        </div>
+      <% end %>
+    </nav>
+  </div>
+</div>
+
 <% if @books.any? %>
-    <% @books.each_slice(2) do |books| %>
-      <div class="card-deck mt-3">
-        <%= render partial: "book", collection: books, as: :book %>
-      </div>
-    <% end %>
-    <%= paginate @books %>
+  <% @books.each_slice(2) do |books| %>
+    <div class="card-deck mt-3">
+      <%= render partial: "book", collection: books, as: :book %>
+    </div>
+  <% end %>
+  <%= paginate @books %>
 <% else %>
   <p class="placeholder">There are no books yet.</p>
 <% end %>

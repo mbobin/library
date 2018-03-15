@@ -6,6 +6,7 @@ class BooksController < ApplicationController
       .includes(:authors, pdf_versions: :documents,
         downloadable_versions: :documents)
     @books = @books.with_tag(params[:tag]) if params[:tag].present?
+    @books = @books.search(params[:q]) if params[:q].present?
     @books = Decorators::Book::Index.pagination_wrap(@books)
   end
 
