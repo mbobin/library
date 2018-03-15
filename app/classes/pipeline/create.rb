@@ -21,9 +21,7 @@ module Pipeline
       }
 
     ensure
-      data = options
-
-      ImportLog.create(data: data)
+      ImportLog.create(data: options)
     end
   end
 end

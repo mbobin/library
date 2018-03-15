@@ -14,4 +14,19 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book = Decorators::Book::Show.new(@book)
   end
+
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    PipelineUpdateJob.perform_later(@book.id, isbn_param)
+    redirect_to @book, notice: "Book will be updated"
+  end
+
+  private
+    def isbn_param
+      params.require(:book).permit(:isbn)[:isbn]
+    end
 end
