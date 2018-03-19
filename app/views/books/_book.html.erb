@@ -4,10 +4,6 @@
       <%= book.title %>
     </h5>
     <h6 class="card-subtitle">by <%= book.author_names %> - <%= book.isbn %></h6>
-    <h6 class="card-subtitle mt-2">
-      <%= book.link_to_pdf_versions %>
-      <%= book.link_to_downloadable_versions %>
-    </h6>
     <p class="card-text small" title="<%= book.description %>" ><%= book.summarization %></p>
   </div>
   <div class="card-footer">
