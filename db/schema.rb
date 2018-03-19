@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_15_195317) do
+ActiveRecord::Schema.define(version: 2018_03_19_192437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -60,6 +60,21 @@ ActiveRecord::Schema.define(version: 2018_03_15_195317) do
     t.index ["name", "description"], name: "books_on_name_idx", opclass: :gin_trgm_ops, using: :gin
   end
 
+  create_table "books_collections", id: false, force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "collection_id", null: false
+    t.index ["book_id", "collection_id"], name: "index_books_collections_on_book_id_and_collection_id"
+    t.index ["collection_id", "book_id"], name: "index_books_collections_on_collection_id_and_book_id"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -88,6 +103,20 @@ ActiveRecord::Schema.define(version: 2018_03_15_195317) do
     t.jsonb "data", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "versions", force: :cascade do |t|

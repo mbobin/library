@@ -76,6 +76,7 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (8.1.0)
       execjs
+    bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
@@ -99,6 +100,12 @@ GEM
     delayed_job_active_record (4.1.2)
       activerecord (>= 3.0, < 5.2)
       delayed_job (>= 3.0, < 5)
+    devise (4.4.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 6.0)
+      responders
+      warden (~> 1.2.3)
     epub-cfi (0.1.1)
     epub-parser (0.3.5)
       addressable (>= 2.3.5)
@@ -170,6 +177,7 @@ GEM
       octicons (= 5.2.0)
       rails
     open4 (1.3.4)
+    orm_adapter (0.5.0)
     pdf-reader (2.1.0)
       Ascii85 (~> 1.0.0)
       afm (~> 0.2.1)
@@ -219,6 +227,9 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rchardet (1.7.0)
+    responders (2.4.0)
+      actionpack (>= 4.2.0, < 5.3)
+      railties (>= 4.2.0, < 5.3)
     ruby-rc4 (0.1.5)
     ruby_dep (1.5.0)
     sass (3.5.5)
@@ -255,6 +266,8 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.6)
       execjs (>= 0.3.0, < 3)
+    warden (1.2.7)
+      rack (>= 1.0)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -274,6 +287,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   daemons
   delayed_job_active_record
+  devise
   isbn_extractor!
   jquery-rails
   kaminari

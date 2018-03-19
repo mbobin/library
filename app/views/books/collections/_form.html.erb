@@ -1,0 +1,8 @@
+<%= form_with(model: @book, url: book_collection_path(@book.id), method: :patch, remote: true) do |f| %>
+  <div>
+    <%= f.collection_check_boxes :collection_ids, current_user.collections, :id, :name %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -2,6 +2,7 @@ class Book < ApplicationRecord
   include PgSearch
 
   has_and_belongs_to_many :authors
+  has_and_belongs_to_many :collections
   has_many :versions, dependent: :destroy
   has_many :pdf_versions, -> { pdf_books }, class_name: "Version"
   has_many :downloadable_versions, -> { downloadable_books }, class_name: "Version"
