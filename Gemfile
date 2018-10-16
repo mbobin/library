@@ -12,6 +12,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.0.0'
+gem "bootstrap_form", ">= 4.0.0.alpha1"
 gem 'jquery-rails'
 gem 'octicons_helper'
 gem 'isbn_extractor', github: 'mbobin/isbn_extractor'

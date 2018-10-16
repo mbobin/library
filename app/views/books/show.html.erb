@@ -2,8 +2,12 @@
   <div class="card text-white bg-dark">
     <div class="card-body">
       <h5 class="card-title">
-        <%= @book.title %>
-        <%= link_to octicon("repo-clone"), edit_book_collection_path(@book), remote: true %>
+        <span>
+          <%= @book.title %>
+        </span>
+        <span class="float-right">
+          <%= link_to octicon("repo-clone", fill: "currentcolor"), edit_book_collection_path(@book), remote: true %>
+        </span>
       </h5>
 
       <h6 class="card-subtitle">by <%= @book.author_names %> - <%= @book.isbn %></h6>

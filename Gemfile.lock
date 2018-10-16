@@ -77,6 +77,8 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
+    bootstrap_form (4.0.0.alpha1)
+      rails (>= 5.0)
     builder (3.2.3)
     byebug (10.0.0)
     coderay (1.1.2)
@@ -278,6 +280,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap (~> 4.0.0)
+  bootstrap_form (>= 4.0.0.alpha1)
   byebug
   coffee-rails (~> 4.2)
   daemons
@@ -305,4 +308,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
