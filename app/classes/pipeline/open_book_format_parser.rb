@@ -9,6 +9,7 @@ module Pipeline
       @book_data
         .xpath("//title")
         .map(&:text)
+        .map(&method(:sanitize))
         .first
     end
 
@@ -16,6 +17,7 @@ module Pipeline
       @book_data
         .xpath("//creator")
         .map(&:text)
+        .map(&method(:sanitize))
     end
 
     def description
@@ -53,7 +55,12 @@ module Pipeline
     private
 
     def sanitize(text)
-      Loofah.fragment(text).to_text
+      Loofah
+        .fragment(text)
+        .to_text
+        .to_s
+        .gsub("&amp;", "&")
     end
   end
 end
+
