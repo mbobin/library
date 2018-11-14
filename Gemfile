@@ -11,7 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'bootsnap'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.1'
 gem "bootstrap_form", ">= 4.0.0.alpha1"
 gem 'jquery-rails'
 gem 'octicons_helper'
