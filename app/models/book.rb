@@ -16,6 +16,7 @@ class Book < ApplicationRecord
     [:name, 'A'],
     [:tags, 'A'],
     [:description, 'B'],
-  ]
-
+  ],
+  using: { tsearch: { any_word: true, prefix: true } }
 end
+
