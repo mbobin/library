@@ -6,7 +6,7 @@ require 'mina/puma'
 require 'mina/delayed_job'
 
 set :application_name, 'library'
-set :domain, 'nuc.lan'
+set :domain, 'library.lan'
 set :deploy_to, '/home/marius/apps/library'
 set :repository, 'git@github.com:mbobin/library.git'
 set :branch, 'master'
