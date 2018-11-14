@@ -12,5 +12,10 @@ class Book < ApplicationRecord
   }
 
   pg_search_scope :search_by_name, against: :name, using: { trigram: { threshold: 0.85 } }
-  pg_search_scope :search, against: [:name, :description], using: { trigram: { threshold: 0.2 } }
+  pg_search_scope :search, against: [
+    [:name, 'A'],
+    [:tags, 'A'],
+    [:description, 'B'],
+  ]
+
 end
