@@ -7,10 +7,11 @@ class ClusterTags
     "lg"  => 500..1_000,
     "md"  => 100..500,
     "sm"  => 50..100,
+    "xs"  => 10..50,
   }.freeze
 
  INVERTED_CATEGORIES = CATEGORIES.invert.freeze
- DEFAULT_CATEGORY = "xs"
+ DEFAULT_CATEGORY = "xxs"
 
   class << self
     def call
