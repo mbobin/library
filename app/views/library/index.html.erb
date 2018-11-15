@@ -1,13 +1,13 @@
-<%= ClusterTags.each_category do |category| %>
-  <div class="mt-2">
+<% ClusterTags.each_category do |category| %>
+  <div class="mt-2 text-justify">
     <% @cluster[category].to_a.each do |tag| %>
       <%= link_to(books_path(tag: tag["word"])) do %>
-        <%= content_tag(:span, class: "badge badge-secondary mt-2", class: "tag-#{category}") do %>
+        <%= content_tag(:span, class: "badge badge-secondary mt-2 tag-#{category}") do %>
           <%= tag["word"] %>
           <%= content_tag(:span, tag["frequency"], class: "badge badge-light") %>
         <% end %>
       <% end %>
     <% end %>
   </div>
-<% end %> 
+<% end %>
 

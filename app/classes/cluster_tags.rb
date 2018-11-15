@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ClusterTags
   CATEGORIES = {
     "xxl" => 5_000..1_000_000,
@@ -8,6 +10,7 @@ class ClusterTags
   }.freeze
 
  INVERTED_CATEGORIES = CATEGORIES.invert.freeze
+ DEFAULT_CATEGORY = "xs"
 
   class << self
     def call
@@ -15,7 +18,7 @@ class ClusterTags
     end
 
     def each_category(&block)
-      CATEGORIES.keys.each(&block)
+      (CATEGORIES.keys + DEFAULT_CATEGORY).each(&block)
     end
   end
 
@@ -39,7 +42,7 @@ class ClusterTags
     INVERTED_CATEGORIES
       .detect { |(range, value)| range.cover?(number.to_i) }
       .to_a
-      .last || "xs"
+      .last || DEFAULT_CATEGORY
   end
 
   def cluster_sql
