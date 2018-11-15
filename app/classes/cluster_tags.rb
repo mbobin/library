@@ -1,4 +1,4 @@
-ass ClusterTags
+class ClusterTags
   CATEGORIES = {
     "xxl" => 5_000..1_000_000,
     "xl"  => 1_000..5_000,
