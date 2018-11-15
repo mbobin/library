@@ -18,7 +18,7 @@ class ClusterTags
     end
 
     def each_category(&block)
-      (CATEGORIES.keys + DEFAULT_CATEGORY).each(&block)
+      (CATEGORIES.keys + [DEFAULT_CATEGORY]).each(&block)
     end
   end
 
