@@ -3,7 +3,7 @@
     <% @cluster[category].to_a.each do |tag| %>
       <%= link_to(books_path(tag: tag["word"])) do %>
         <%= content_tag(:span, class: "badge badge-secondary mt-2", class: "tag-#{category}") do %>
-          <%= tag["word] %>
+          <%= tag["word"] %>
           <%= content_tag(:span, tag["frequency"], class: "badge badge-light") %>
         <% end %>
       <% end %>
