@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update]
+
   def index
     @books = Book
       .order(created_at: :desc)
