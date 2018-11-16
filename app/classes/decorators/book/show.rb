@@ -31,6 +31,10 @@ module Decorators
 
       private
 
+      def showable_tags
+        tags.to_a.take(15)
+      end
+
       def document_link(document)
         helpers.link_to(routes.document_path(document), class: "mr-2") do
           helpers.octicon("file-pdf", fill: "currentcolor")

@@ -15,10 +15,14 @@ module Decorators
 
       def tag_badges
         helpers.capture do
-          tags.each do |tag|
+          showable_tags.each do |tag|
             helpers.concat helpers.content_tag(:span, tag, class: "badge badge-light mr-2")
           end
         end
+      end
+
+      def showable_tags
+        tags.to_a.take(5)
       end
     end
   end
