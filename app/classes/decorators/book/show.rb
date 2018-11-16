@@ -37,13 +37,13 @@ module Decorators
 
       def document_link(document)
         helpers.link_to(routes.document_path(document), class: "mr-2") do
-          helpers.octicon("file-pdf", fill: "currentcolor")
+          helpers.octicon("file-pdf", fill: "currentcolor", height: 32)
         end
       end
 
       def download_document_link(document, version)
         helpers.link_to(routes.download_document_path(document), title: version.book_type, class: "mr-2") do
-          helpers.octicon("cloud-download", fill: "currentcolor")
+          helpers.octicon("cloud-download", fill: "currentcolor", height: 32)
         end
       end
 
