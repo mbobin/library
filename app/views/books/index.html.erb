@@ -2,7 +2,7 @@
   <div class="col-md-8 offset-md-2">
       <%= form_with url: books_path, method: :get, local: true do |f| %>
        <div class="form-group mt-3">
-        <%= f.search_field :q, value: params[:q], class: "form-control form-control-lg", placeholder: "Search", aria: { label: "Search" } %>
+        <%= f.search_field :q, value: params[:q], class: "form-control form-control-lg", placeholder: "Search", autofocus: true, aria: { label: "Search" } %>
         <%= f.submit "Search", class: "d-none" %>
         </div>
       <% end %>
