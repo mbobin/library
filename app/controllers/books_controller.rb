@@ -22,12 +22,26 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    PipelineUpdateJob.perform_later(@book.id, isbn_param)
-    redirect_to @book, notice: "Book will be updated"
+    if @book.update(book_params)
+      PipelineUpdateJob.perform_later(@book.id, @book.isbn) if @book.update_from_isbn
+      redirect_to @book, notice: "Book will be updated"
+    else
+      render :edit
+    end
   end
 
   private
-    def isbn_param
-      params.require(:book).permit(:isbn)[:isbn]
+    def book_params
+      params
+        .require(:book)
+        .permit(:isbn, :name, :description, :update_from_isbn, tags: [])
+        .tap do |prms|
+          prms[:tags] = prms[:tags].select(&:present?)
+          prms[:update_from_isbn] = string_to_bool(prms[:update_from_isbn])
+        end
+    end
+
+    def string_to_bool(value)
+      ActiveRecord::Type::Boolean.new.cast(value)
     end
 end

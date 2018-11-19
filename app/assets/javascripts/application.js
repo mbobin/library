@@ -16,4 +16,9 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require select2/dist/js/select2
 //= require_tree .
+
+document.addEventListener("turbolinks:load", function() {
+  $('.select2-tags-input').select2({tags: true})
+})

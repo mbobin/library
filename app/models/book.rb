@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   include PgSearch
+  attr_accessor :update_from_isbn
 
   has_and_belongs_to_many :authors
   has_and_belongs_to_many :collections

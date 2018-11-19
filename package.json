@@ -1,5 +1,7 @@
 {
   "name": "library",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "select2": "^4.0.6-rc.1"
+  }
 }
