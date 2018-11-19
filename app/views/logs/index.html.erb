@@ -24,6 +24,13 @@
         <div class="card-body">
           <pre class="text-white"><%= JSON.pretty_generate(log.data) %></pre>
         </div>
+        <div class="card-footer">
+          <%= content_tag(:div, id: "halted-button-#{log.id}") do %>
+            <% if log.halted? && log.has_file? %>
+              <%= link_to octicon("x", fill: "currentcolor"), halted_file_path(log), method: :delete, data: { confirm: "Are you sure?" }, title: "Remove file", remote: true %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>

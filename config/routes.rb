@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 
   root 'library#index'
   resources :books, only: [:show, :index, :edit, :update] do
-    resources :collections, only: [:edit, :update, :delete], module: "books"
+    resources :collections, only: [:edit, :update, :destroy], module: "books"
   end
 
   resources :library, only: :index
   resources :logs, only: :index
+  resources :halted_files, only: :destroy
   resources :documents, only: :show do
     get :download, on: :member
   end
