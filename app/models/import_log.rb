@@ -3,6 +3,10 @@ class ImportLog < ApplicationRecord
   scope :halted, -> { where("data->>'halted' IS NOT NULL") }
 
   def fail?
-    data["error"] || data["halted"]
+    data["error"]
+  end
+
+  def halted?
+    data["halted"]
   end
 end

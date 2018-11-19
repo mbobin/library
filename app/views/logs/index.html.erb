@@ -14,7 +14,8 @@
           <button class="btn btn-link text-white" data-toggle="collapse" data-target="#collapse-<%= log.id %>" aria-expanded="false" aria-controls="collapse-<%= log.id %>">
             <span>#<%= log.id %>.</span>
             <%= log.created_at %>
-            <%= octicon("alert") if log.fail? %>
+            <%= octicon("alert", class: "ml-2") if log.fail? %>
+            <%= octicon("stop", class: "ml-2") if log.halted? %>
           </button>
         </h5>
       </div>
