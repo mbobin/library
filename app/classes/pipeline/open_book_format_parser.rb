@@ -26,6 +26,7 @@ module Pipeline
         .map(&:text)
         .map(&method(:sanitize))
         .join("\n")
+        .presence
     end
 
     def published_at
@@ -33,6 +34,7 @@ module Pipeline
         .xpath("//date")
         .map(&:text)
         .first
+        .presence
 
       Date.parse(date) if date
     end
@@ -50,6 +52,7 @@ module Pipeline
         .css("//identifier[scheme=ISBN]")
         .map(&:text)
         .first
+        .presence
     end
 
     private
@@ -60,6 +63,7 @@ module Pipeline
         .to_text
         .to_s
         .gsub("&amp;", "&")
+        .presence
     end
   end
 end

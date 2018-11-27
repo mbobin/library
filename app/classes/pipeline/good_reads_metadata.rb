@@ -41,7 +41,7 @@ module Pipeline
     end
 
     def merge_data
-      @options["name"] ||= book_title if book_title
+      @options["name"] ||= book_title.presence
       @options["author_names"] = authors if authors.any? && @options["author_names"].to_a.empty?
     end
 
