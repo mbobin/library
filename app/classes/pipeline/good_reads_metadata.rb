@@ -33,11 +33,11 @@ module Pipeline
     end
 
     def book_title
-      xml_data.at_xpath("//title").text
+      xml_data.at_xpath("//title")&.text
     end
 
     def authors
-      xml_data.at_xpath("//name").text.to_s.split(",").map(&:strip)
+      xml_data.at_xpath("//name")&.text.to_s.split(",").map(&:strip)
     end
 
     def merge_data
