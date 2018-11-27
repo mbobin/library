@@ -18,6 +18,10 @@ module Pipeline
         .all?(&:present?)
     end
 
+    def isbn
+      @options["isbn"]
+    end
+
     def book
       @google_book ||= begin
         Booksr.search(isbn, :isbn).to_a.first || no_book
