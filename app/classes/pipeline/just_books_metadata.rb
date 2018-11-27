@@ -33,18 +33,16 @@ module Pipeline
     end
 
     def book_title
-      @book_title ||= html_data.at_css("span#describe-isbn-title").text
+      @book_title ||= html_data.at_css("span#describe-isbn-title")&.text
     end
 
     def authors
-      @authors ||= html_data.at_css("[itemprop='author']").text.to_s.split(",").map(&:strip)
+      @authors ||= html_data.at_css("[itemprop='author']")&.text.to_s.split(",").map(&:strip)
     end
 
     def book_description
       @book_description ||= html_data
-        .at_css("div.description")
-        .text.to_s.gsub(/About the book:/, '')
-        .strip
+        .at_css("div.description")&.text.to_s.gsub(/About the book:/, '').strip
     end
 
     def merge_data
