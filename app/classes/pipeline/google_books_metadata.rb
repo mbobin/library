@@ -1,6 +1,10 @@
 module Pipeline
   class GoogleBooksMetadata < Base
-    NoBook = Struct.new(:isbn)
+    NoBook = Struct.new(:isbn, :description, :published_date) do
+      def authors
+        @authors ||= []
+      end
+    end
 
     private
     attr_reader :book_data
