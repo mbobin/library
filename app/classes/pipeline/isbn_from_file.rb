@@ -12,11 +12,11 @@ module Pipeline
     end
 
     def ruby_isbn
-      ISBNExtractor::Directory::PureRubyDirectory.isbn(@options["file_path"])
+      ISBNExtractor::Directory::PureRubyDirectory.isbn(@options["file_path"]) rescue nil
     end
 
     def tika_isbn
-      ISBNExtractor::Directory::TikaDirectory.isbn(@options["file_path"])
+      ISBNExtractor::Directory::TikaDirectory.isbn(@options["file_path"]) rescue nil
     end
   end
 end
