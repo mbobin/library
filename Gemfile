@@ -20,7 +20,7 @@ gem 'delayed_job_active_record'
 gem 'pry'
 gem 'daemons'
 gem 'kaminari'
-gem 'booksr'
+gem 'booksr', github: "mbobin/booksr"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/mbobin/booksr.git
+  revision: 29551fc3d21158f285ab3044486d35120c47f22c
+  specs:
+    booksr (0.1.2)
+      bundler
+      rest-client
+
+GIT
   remote: https://github.com/mbobin/isbn_extractor.git
   revision: c2d9ef383a1b39f0ba9efdc59c78e6b3639ef5db
   specs:
@@ -71,9 +79,6 @@ GEM
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
-    booksr (0.1.2)
-      bundler
-      rest-client
     bootsnap (1.3.2)
       msgpack (~> 1.0)
     bootstrap (4.1.3)
@@ -292,7 +297,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  booksr
+  booksr!
   bootsnap
   bootstrap (~> 4.1)
   bootstrap_form (>= 4.0.0.alpha1)
