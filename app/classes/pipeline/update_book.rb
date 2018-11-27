@@ -19,7 +19,7 @@ module Pipeline
         description: @options["description"],
         tags: Array(@options["tags"]),
         isbn: @options["isbn"],
-      }
+      }.select { |_key, value| value.present? }
     end
   end
 end
