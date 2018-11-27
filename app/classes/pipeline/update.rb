@@ -2,6 +2,7 @@ module Pipeline
   class Update
     def self.call(options)
       options = Pipeline::IsbnMetadata.call(options)
+      options = Pipeline::GoodReadsMetadata.call(options)
       options = Pipeline::AddAuthors.call(options)
       options = Pipeline::UpdateBook.call(options)
       options

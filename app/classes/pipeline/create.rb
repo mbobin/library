@@ -6,6 +6,7 @@ module Pipeline
       options = Pipeline::FileMetadata.call(options)
       options = Pipeline::IsbnFromFile.call(options)
       options = Pipeline::IsbnMetadata.call(options)
+      options = Pipeline::GoodReadsMetadata.call(options)
       options = Pipeline::AddAuthors.call(options)
       options = Pipeline::AddBook.call(options)
       options = Pipeline::AddVersion.call(options)
