@@ -7,7 +7,7 @@ module Pipeline
 
     def execute
       return unless isbn
-      # return if data_already_present?
+      return if data_already_present?
 
       merge_data
     end
