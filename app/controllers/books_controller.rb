@@ -44,4 +44,9 @@ class BooksController < ApplicationController
     def string_to_bool(value)
       ActiveRecord::Type::Boolean.new.cast(value)
     end
+
+    def autofocus_search_input?
+      params.except(:controller, :action).empty?
+    end
+    helper_method :autofocus_search_input?
 end
