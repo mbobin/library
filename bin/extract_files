@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+require 'fileutils'
+require 'marcel'
+
+path = ARGV[0]
+exit(0) unless path
+
+path = Pathname(path).expand_path
+workdir = path.join("extracted-files").tap { |p| FileUtils.mkdir_p(p) }
+
+clean_up_rule = lambda do |file|
+  file.to_s.end_with?(".diz", ".nfo") ||
+    Marcel::MimeType.for(file) == "application/x-rar"
+end
+
+FileUtils.cd workdir do
+  path.children.select(&:directory?).each do |directory|
+    directory
+      .children
+      .select { |file| file.to_s.end_with?('.zip') }
+      .each { |file| `unzip -o #{Shellwords.escape(file.to_s)}` }
+      # .each { |file| file.unlink }
+  end
+
+  workdir
+    .children
+    .select { |file| file.to_s.end_with?(".rar") }
+    .each { |file| `unrar e #{Shellwords.escape(file.to_s)}` }
+    .each { |p| p.unlink }
+
+  workdir
+    .children
+    .select(&clean_up_rule)
+    .each { |p| p.unlink }
+end
