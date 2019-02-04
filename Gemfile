@@ -21,6 +21,7 @@ gem 'pry'
 gem 'daemons'
 gem 'kaminari'
 gem 'booksr', github: "mbobin/booksr"
+gem 'marcel'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
