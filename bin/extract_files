@@ -2,26 +2,38 @@
 
 require 'pathname'
 require 'fileutils'
+require 'shellwords'
 require 'marcel'
 
 path = ARGV[0]
 exit(0) unless path
 
 path = Pathname(path).expand_path
-workdir = path.join("extracted-files").tap { |p| FileUtils.mkdir_p(p) }
+workdir = path.join("..", "extracted-files").tap { |p| FileUtils.mkdir_p(p) }
+processed_dir = path.join("..", "processed-dir/").tap { |p| FileUtils.mkdir_p(p) }
+binary_files = [
+  "application/octet-stream",
+  "application/x-rar",
+  "application/vnd.rar",
+]
 
 clean_up_rule = lambda do |file|
   file.to_s.end_with?(".diz", ".nfo") ||
-    Marcel::MimeType.for(file) == "application/x-rar"
+    binary_files.include?(Marcel::MimeType.for(file))
+end
+
+match_zip_rule = lambda do |file|
+  file.to_s.end_with?('.zip')
 end
 
 FileUtils.cd workdir do
   path.children.select(&:directory?).each do |directory|
     directory
       .children
-      .select { |file| file.to_s.end_with?('.zip') }
+      .select(&match_zip_rule)
       .each { |file| `unzip -o #{Shellwords.escape(file.to_s)}` }
-      # .each { |file| file.unlink }
+
+    FileUtils.mv(directory, processed_dir) if directory.children.any?(&match_zip_rule)
   end
 
   workdir
