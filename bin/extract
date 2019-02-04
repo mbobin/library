@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ls | xargs -L 1 bash -c 'cd "$0" ; ls *.zip | xargs -n 1 unzip -u ; unrar e *.rar'
