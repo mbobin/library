@@ -4,18 +4,27 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    document = Document.find(params[:id])
     file = document.file
 
     send_data file.download, type: file.content_type, disposition: :inline
   end
 
   def download
-    document = Document.find(params[:id])
     file = document.file
 
     send_data file.download, type: file.content_type,
       disposition: :attachment,
       filename: "#{document.book.name}.#{document.version.book_type}"
+  end
+
+  def convert
+    PipelineConvertJob.perform_later(document)
+    redirect_to document.book, notice: "Conversion enqueued"
+  end
+
+  private
+
+  def document
+    @document ||= Document.find(params[:id])
   end
 end

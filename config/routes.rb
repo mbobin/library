@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :halted_files, only: :destroy
   resources :documents, only: :show do
     get :download, on: :member
+    post :convert, on: :member
   end
   resources :collections, only: :index
 end
