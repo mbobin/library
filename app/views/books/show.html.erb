@@ -6,8 +6,8 @@
           <%= @book.title %>
         </span>
         <span class="float-right">
-          <%= link_to octicon("repo-clone", fill: "currentcolor"), edit_book_collection_path(@book), remote: true %>
-          <%= link_to octicon("pencil", fill: "currentcolor"), edit_book_path(@book), class: "ml-3" %>
+          <%= link_to octicon("repo-clone", fill: "currentcolor"), edit_book_collection_path(@book), remote: true, class: "btn btn-secondary" %>
+          <%= link_to octicon("pencil", fill: "currentcolor"), edit_book_path(@book), class: "ml-3 btn btn-secondary" %>
         </span>
       </h5>
 
