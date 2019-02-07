@@ -20,5 +20,5 @@
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function() {
-  $('.select2-tags-input').select2({tags: true})
+  $('.select2-tags-input').select2({tags: true, tokenSeparators: [',', ';']})
 })
