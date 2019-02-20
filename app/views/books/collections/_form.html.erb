@@ -1,8 +1,8 @@
 <%= bootstrap_form_with(model: @book, url: book_collection_path(@book.id), method: :patch, remote: true) do |f| %>
   <div>
-    <%= f.collection_check_boxes :collection_ids, current_user.collections, :id, :name, hide_label: true %>
+    <%= f.collection_check_boxes :collection_ids, @collections, :id, :name, hide_label: true %>
   </div>
   <div>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-secondary float-right" %>
   </div>
 <% end %>

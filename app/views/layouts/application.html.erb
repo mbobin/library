@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Library</title>
+    <title>Bookshelf</title>
     <%= csrf_meta_tags %>
 
     <meta charset="utf-8">
@@ -13,43 +13,29 @@
 
   <body>
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">Private book collection</p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <ul class="list-unstyled">
-                <li><%= link_to "Library", books_path, class: "text-white" %></li>
-                <li><%= link_to "Collections", collections_path, class: "text-white" %></li>
-                <li><%= link_to "Import Logs", logs_path, class: "text-white" %></li>
-              </ul>
-            </div>
-          </div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark box-shadow">
+        <%= link_to root_path, class: "navbar-brand mr-2" do %>
+          <%= octicon(:book, height: 32, fill: "currentcolor") %>
+          <strong>Bookshelf</strong>
+        <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <%= render_navigation expand_all: true, context: "navigation/application" %>
+          <%= render_navigation expand_all: true, context: "navigation/user" %>
         </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="/" class="navbar-brand d-flex align-items-center">
-            <%= octicon(:book, height: 32, fill: "currentcolor", class: "mr-2") %>
-            <strong>Bookshelf</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
+      </nav>
     </header>
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
       <%= flash_messages %>
       <%= yield %>
-      <div class="modal fade" id="app-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal fade" id="app-modal" tabindex="-1" role="dialog" aria-labelledby="modal-title-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
+          <div class="modal-content text-white bg-dark">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+              <h5 class="modal-title" id="modal-title-label"></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

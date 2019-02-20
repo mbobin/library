@@ -4,4 +4,8 @@ class User < ApplicationRecord
   # :recoverable, #:registerable,
   devise :database_authenticatable, :rememberable, :trackable, :validatable
   has_many :collections
+  enum role: {
+    regular: 1,
+    admin: 10,
+  }
 end

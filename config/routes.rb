@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     get :download, on: :member
     post :convert, on: :member
   end
-  resources :collections, only: :index
+  resources :collections, only: [:index, :new, :create]
 end

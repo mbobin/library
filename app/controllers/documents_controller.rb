@@ -18,6 +18,8 @@ class DocumentsController < ApplicationController
   end
 
   def convert
+    authorize document
+
     PipelineConvertJob.perform_later(document)
     redirect_to document.book, notice: "Conversion enqueued"
   end

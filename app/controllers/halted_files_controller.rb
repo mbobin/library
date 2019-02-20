@@ -3,6 +3,7 @@ class HaltedFilesController < ApplicationController
 
   def destroy
     @log = ImportLog.find(params[:id])
+    authorize @log
     @log.remove_file!
   end
 end

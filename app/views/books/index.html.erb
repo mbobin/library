@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-md-8 offset-md-2">
+<div class="row justify-content-center">
+  <div class="col-8">
       <%= form_with url: books_path, method: :get, local: true do |f| %>
        <div class="form-group mt-3">
         <%= f.search_field :q, value: params[:q], class: "form-control form-control-lg", placeholder: "Search", autofocus: autofocus_search_input?, aria: { label: "Search" } %>
@@ -11,12 +11,24 @@
 
 <% if @books.any? %>
   <% @books.each_slice(2) do |books| %>
-    <div class="card-deck mt-3">
-      <%= render partial: "book", collection: books, as: :book %>
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div class="card-deck mt-3">
+          <%= render partial: "book", collection: books, as: :book %>
+        </div>
+      </div>
     </div>
   <% end %>
-  <%= paginate @books %>
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= paginate @books %>
+    </div>
+  </div>
 <% else %>
-  <p class="placeholder">There are no books yet.</p>
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <p class="placeholder">There are no books yet.</p>
+    </div>
+  </div>
 <% end %>
 

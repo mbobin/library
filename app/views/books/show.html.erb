@@ -1,25 +1,37 @@
-<div class="mt-3">
-  <div class="card text-white bg-dark">
-    <div class="card-body">
-      <h5 class="card-title">
-        <span>
-          <%= @book.title %>
-        </span>
-        <span class="float-right">
-          <%= link_to octicon("repo-clone", fill: "currentcolor"), edit_book_collection_path(@book), remote: true, class: "btn btn-secondary" %>
-          <%= link_to octicon("pencil", fill: "currentcolor"), edit_book_path(@book), class: "ml-3 btn btn-secondary" %>
-        </span>
-      </h5>
+<div class="row justify-content-center">
+  <div class="col-10">
+    <div class="mt-3">
+      <div class="card text-white bg-dark">
+        <div class="card-body">
+          <h5 class="card-title">
+            <span>
+              <%= @book.title %>
+            </span>
+            <span class="float-right">
+              <% if policy(Collection).edit? %>
+                <%= link_to octicon("repo-clone", fill: "currentcolor"),
+                edit_book_collection_path(@book),
+                remote: true, class: "btn btn-secondary" %>
+              <% end %>
 
-      <h6 class="card-subtitle">by <%= @book.author_names %> - <%= @book.isbn %></h6>
-      <h6 class="card-subtitle mt-2">
-        <%= @book.link_to_pdf_versions %>
-        <%= @book.link_to_downloadable_versions %>
-      </h6>
-      <p class="card-text small"><%= @book.summarization %></p>
-    </div>
-    <div class="card-footer">
-      <%= @book.tag_badges %>
+              <% if policy(@book).edit? %>
+                <%= link_to octicon("pencil", fill: "currentcolor"),
+                  edit_book_path(@book), class: "ml-3 btn btn-secondary" %>
+              <% end %>
+            </span>
+          </h5>
+
+          <h6 class="card-subtitle">by <%= @book.author_names %> - <%= @book.isbn %></h6>
+          <h6 class="card-subtitle mt-2">
+            <%= @book.link_to_pdf_versions %>
+            <%= @book.link_to_downloadable_versions %>
+          </h6>
+          <p class="card-text small"><%= @book.summarization %></p>
+        </div>
+        <div class="card-footer">
+          <%= @book.tag_badges %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -18,10 +18,13 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    authorize @book
   end
 
   def update
     @book = Book.find(params[:id])
+    authorize @book
+
     if @book.update(book_params)
       PipelineUpdateJob.perform_later(@book.id, @book.isbn) if @book.update_from_isbn
       redirect_to @book, notice: "Book will be updated"

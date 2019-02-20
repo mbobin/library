@@ -6,22 +6,28 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'pg_search'
 gem 'puma', '~> 3.11'
 gem 'devise'
+gem 'pundit', '~> 2.0', '>= 2.0.1'
+
+gem 'delayed_job_active_record'
+gem 'daemons'
+
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
+gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.1'
 gem "bootstrap_form", ">= 4.0.0.alpha1"
-gem 'jquery-rails'
-gem 'octicons_helper'
-gem 'isbn_extractor', github: 'mbobin/isbn_extractor'
-gem 'delayed_job_active_record'
-gem 'pry'
-gem 'daemons'
 gem 'kaminari'
+gem 'simple-navigation'
+gem 'simple_navigation_bootstrap'
+gem 'octicons_helper'
+
+gem 'isbn_extractor', github: 'mbobin/isbn_extractor'
 gem 'booksr', github: "mbobin/booksr"
 gem 'marcel'
+gem 'pry'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
