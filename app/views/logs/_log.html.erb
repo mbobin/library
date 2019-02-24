@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+  <div class="col-10">
+    <div class="card text-white bg-dark mb-2">
+      <div class="card-header" id="heading-<%= log.id %>">
+        <h5 class="mb-0">
+          <button class="btn btn-link text-white" data-toggle="collapse" data-target="#collapse-<%= log.id %>" aria-expanded="false" aria-controls="collapse-<%= log.id %>">
+            <span>#<%= log.id %>.</span>
+            <%= log.created_at %>
+            <%= octicon("alert", class: "ml-2", fill: "currentcolor") if log.fail? %>
+            <%= octicon("stop", class: "ml-2", fill: "currentcolor") if log.halted? %>
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapse-<%= log.id %>" class="collapse" aria-labelledby="heading-<%= log.id %>" data-parent="#accordion">
+        <div class="card-body">
+          <pre class="text-white"><%= JSON.pretty_generate(log.data) %></pre>
+        </div>
+        <div class="card-footer">
+          <%= content_tag(:div, id: "halted-button-#{log.id}") do %>
+            <% if policy(log).destroy? && log.halted? && log.has_file? %>
+              <%= link_to octicon("x", fill: "currentcolor"), halted_file_path(log), method: :delete, data: { confirm: "Are you sure?" }, title: "Remove file", remote: true %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
