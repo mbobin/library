@@ -1,0 +1,52 @@
+FROM ruby:2.6-alpine as builder
+
+RUN apk add --no-cache --update \
+  build-base \
+  linux-headers \
+  postgresql-dev \
+  tzdata \
+  yarn \
+  git
+
+ENV APP_PATH /var/apps/library
+ENV RAILS_ENV production
+ENV RAILS_GROUPS=web,assets
+
+WORKDIR $APP_PATH
+ADD Gemfile $APP_PATH
+ADD Gemfile.lock $APP_PATH
+RUN bundle install \
+  --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` \
+  --retry 3 \
+  --without test development workers \
+  --deployment
+
+COPY . $APP_PATH
+RUN SECRET_KEY_BASE=`bin/rake secret` DATABASE_URL="postgres://no:database@in/here" bin/rake assets:precompile
+# TODO: remove gems from the assets group
+
+FROM ruby:2.6-alpine
+
+RUN apk add --no-cache --update \
+  postgresql-dev \
+  tzdata
+
+ENV APP_PATH /var/apps/library
+ENV RAILS_ENV production
+ENV RAILS_GROUPS=web
+WORKDIR $APP_PATH
+
+COPY --from=builder $APP_PATH $APP_PATH
+
+RUN bundle install \
+  --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` \
+  --retry 3 \
+  --without test development workers \
+  --local \
+  --deployment \
+  --frozen \
+  --clean
+
+EXPOSE 3000
+
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]

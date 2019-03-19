@@ -4,30 +4,36 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails', '~> 5.2.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'pg_search'
-gem 'puma', '~> 3.11'
-gem 'devise'
-gem 'pundit', '~> 2.0', '>= 2.0.1'
-
-gem 'delayed_job_active_record'
-gem 'daemons'
-
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
-gem 'bootsnap'
-gem 'bootstrap', '~> 4.1'
-gem "bootstrap_form", ">= 4.0.0.alpha1"
-gem 'kaminari'
-gem 'simple-navigation'
-gem 'simple_navigation_bootstrap'
-gem 'octicons_helper'
-
-gem 'isbn_extractor', github: 'mbobin/isbn_extractor'
-gem 'booksr', github: "mbobin/booksr"
-gem 'marcel'
 gem 'pry'
+gem 'bootsnap'
+gem 'devise'
+
+group :web do
+  gem 'pundit', '~> 2.0', '>= 2.0.1'
+  gem 'puma', '~> 3.11'
+  gem 'kaminari'
+  gem 'simple-navigation'
+  gem 'simple_navigation_bootstrap'
+  gem 'octicons_helper'
+  gem "bootstrap_form", ">= 4.0.0.alpha1"
+end
+
+group :assets do
+  gem 'uglifier', '>= 1.3.0'
+  gem 'sass-rails', '~> 5.0'
+  gem 'coffee-rails', '~> 4.2'
+  gem 'jquery-rails'
+  gem 'turbolinks', '~> 5'
+  gem 'bootstrap', '~> 4.1'
+end
+
+group :workers do
+  gem 'isbn_extractor', github: 'mbobin/isbn_extractor'
+  gem 'booksr', github: "mbobin/booksr"
+  gem 'marcel'
+  gem 'delayed_job_active_record'
+  gem 'daemons'
+end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

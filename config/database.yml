@@ -1,0 +1,13 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_DATABASE_POOL") { 5 } %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+development:
+  <<: *default
+  user: <%= ENV['USER'] %>
+  database: library_dev
+
+production:
+  <<: *default
