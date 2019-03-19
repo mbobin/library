@@ -47,7 +47,7 @@ class ClusterTags
   end
 
   def cluster_sql
-    <<~SQL
+    <<~SQL.squish
       select word, count(word) as frequency
       from(
         select(unnest(tags)) as word from books
