@@ -22,7 +22,7 @@ RUN bundle install \
   --deployment
 
 COPY . $APP_PATH
-RUN SECRET_KEY_BASE=`bin/rake secret` DATABASE_URL="postgres://no:database@in/here" bin/rake assets:precompile
+RUN SECRET_KEY_BASE=`bin/rake secret` DATABASE_URL="postgres://no:database@in/here" bin/rake assets:precompile; rm -rf node_modules
 # TODO: remove gems from the assets group
 
 FROM ruby:2.6-alpine
