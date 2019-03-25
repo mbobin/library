@@ -7,9 +7,10 @@ gem 'pg_search'
 gem 'pry'
 gem 'bootsnap'
 gem 'devise'
+gem 'delayed_job_active_record'
+gem 'pundit', '~> 2.0', '>= 2.0.1'
 
 group :web do
-  gem 'pundit', '~> 2.0', '>= 2.0.1'
   gem 'puma', '~> 3.11'
   gem 'kaminari'
   gem 'simple-navigation'
@@ -31,7 +32,6 @@ group :workers do
   gem 'isbn_extractor', github: 'mbobin/isbn_extractor'
   gem 'booksr', github: "mbobin/booksr"
   gem 'marcel'
-  gem 'delayed_job_active_record'
   gem 'daemons'
 end
 
