@@ -1,0 +1,47 @@
+FROM ruby:2.6-alpine
+
+ENV GLIBC_VERSION 2.29-r0
+
+ADD "https://download.calibre-ebook.com/linux-installer.sh" /tmp
+ADD "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VERSION/glibc-$GLIBC_VERSION.apk" /tmp
+ADD "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VERSION/glibc-bin-$GLIBC_VERSION.apk" /tmp
+ADD "https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub" "/etc/apk/keys/sgerrand.rsa.pub"
+
+RUN apk add --no-cache --update \
+  build-base \
+  linux-headers \
+  postgresql-dev \
+  tzdata \
+  git \
+  wget \
+  python \
+  qt \
+  gcc \
+  mesa-gl \
+  fontconfig \
+  libxrender \
+  libxcomposite \
+  xz \
+  /tmp/glibc-2.29-r0.apk \
+  /tmp/glibc-bin-2.29-r0.apk ;\
+  \
+  chmod +x /tmp/linux-installer.sh ;\
+  /tmp/linux-installer.sh ;\
+  rm -rf /tmp/*
+
+ENV APP_PATH /var/apps/library
+ENV RAILS_ENV production
+ENV RAILS_GROUPS=workers
+
+WORKDIR $APP_PATH
+ADD Gemfile $APP_PATH
+ADD Gemfile.lock $APP_PATH
+RUN bundle install \
+  --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` \
+  --retry 3 \
+  --without test development web assets \
+  --deployment
+
+COPY . $APP_PATH
+
+CMD ["bin/rake", "jobs:work"]
