@@ -1,0 +1,36 @@
+version: '3'
+services:
+  database:
+    image: postgres:11
+    volumes:
+     - ./tmp/db:/var/lib/postgresql/data
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    command:  bin/rails server -b 0.0.0.0
+    ports:
+      - "3000:3000"
+    environment:
+      - "SECRET_KEY_BASE=replace-this"
+      - "DATABASE_URL=postgres://postgres:@database/library_production"
+      - "RAILS_SERVE_STATIC_FILES=true"
+      - "RAILS_LOG_TO_STDOUT=true"
+    volumes:
+      - ./tmp/storage:/var/apps/library/storage
+    depends_on:
+     - database
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    command:  bin/rake jobs:work
+    environment:
+      - "SECRET_KEY_BASE=replace-this"
+      - "DATABASE_URL=postgres://postgres:@database/library_production"
+      - "RAILS_LOG_TO_STDOUT=true"
+    depends_on:
+     - database
+    volumes:
+      - ./tmp/storage:/var/apps/library/storage
