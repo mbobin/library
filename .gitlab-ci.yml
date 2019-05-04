@@ -6,8 +6,6 @@ services:
 variables:
   DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
-  WEB_IMAGE_TAG: ${CI_REGISTRY_IMAGE}/web
-  WORKER_IMAGE_TAG: ${CI_REGISTRY_IMAGE}/worker
 
 before_script:
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
@@ -23,9 +21,9 @@ before_script:
 build_web:
   <<: *docker_build_template
   variables:
-    IMAGE_TAG: ${WEB_IMAGE_TAG}
+    IMAGE_TAG: ${CI_REGISTRY_IMAGE}/web
 
 build_worker:
   <<: *docker_build_template
   variables:
-    IMAGE_TAG: ${WORKER_IMAGE_TAG}
+    IMAGE_TAG: ${CI_REGISTRY_IMAGE}/worker
