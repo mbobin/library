@@ -13,7 +13,7 @@ before_script:
 .docker_build_template: &docker_build_template
   stage: build
   script:
-    - docker build --tag $IMAGE_TAG:$CI_COMMIT_SHORT_SHA --tag $IMAGE_TAG:latest .
+    - docker build --tag $IMAGE_TAG:$CI_COMMIT_SHORT_SHA --tag $IMAGE_TAG:latest -f $DOCKERFILE .
     - docker push $IMAGE_TAG:$CI_COMMIT_SHORT_SHA
     - docker push $IMAGE_TAG:latest
 
@@ -21,8 +21,10 @@ build_web:
   <<: *docker_build_template
   variables:
     IMAGE_TAG: ${CI_REGISTRY_IMAGE}/web
+    DOCKERFILE: Dockerfile.web
 
 build_worker:
   <<: *docker_build_template
   variables:
     IMAGE_TAG: ${CI_REGISTRY_IMAGE}/worker
+    DOCKERFILE: Dockerfile.worker
