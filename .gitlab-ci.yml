@@ -23,9 +23,9 @@ before_script:
 build_web:
   <<: *docker_build_template
   variables:
-    IMAGE_TAG: $WEB_IMAGE_TAG
+    IMAGE_TAG: ${WEB_IMAGE_TAG}
 
 build_worker:
   <<: *docker_build_template
   variables:
-    IMAGE_TAG: $WORKER_IMAGE_TAG
+    IMAGE_TAG: ${WORKER_IMAGE_TAG}
