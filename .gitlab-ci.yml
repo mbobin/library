@@ -1,0 +1,31 @@
+image: docker:stable
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+  WEB_IMAGE_TAG: $CI_REGISTRY_IMAGE/web
+  WORKER_IMAGE_TAG: $CI_REGISTRY_IMAGE/worker
+
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+.docker_build_template: &docker_build_template
+  stage: build
+  script:
+    - docker pull $IMAGE_TAG:latest || true
+    - docker build --cache-from $IMAGE_TAG:latest --tag $IMAGE_TAG:$CI_COMMIT_SHA --tag $IMAGE_TAG:latest .
+    - docker push $IMAGE_TAG:$CI_COMMIT_SHA
+    - docker push $IMAGE_TAG:latest
+
+build_web:
+  <<: *docker_build_template
+  variables:
+    IMAGE_TAG: $WEB_IMAGE_TAG
+
+build_worker:
+  <<: *docker_build_template
+  variables:
+    IMAGE_TAG: $WORKER_IMAGE_TAG
