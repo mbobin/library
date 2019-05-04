@@ -16,8 +16,8 @@ before_script:
   stage: build
   script:
     - docker pull $IMAGE_TAG:latest || true
-    - docker build --cache-from $IMAGE_TAG:latest --tag $IMAGE_TAG:$CI_COMMIT_REF_SLUG --tag $IMAGE_TAG:latest .
-    - docker push $IMAGE_TAG:$CI_COMMIT_REF_SLUG
+    - docker build --cache-from $IMAGE_TAG:latest --tag $IMAGE_TAG:$CI_COMMIT_SHORT_SHA --tag $IMAGE_TAG:latest .
+    - docker push $IMAGE_TAG:$CI_COMMIT_SHORT_SHA
     - docker push $IMAGE_TAG:latest
 
 build_web:
