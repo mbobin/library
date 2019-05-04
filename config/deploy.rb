@@ -17,6 +17,8 @@ set :forward_agent, true
 set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public/assets')
 set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/storage.yml', 'config/secrets.yml', 'config/puma.rb')
 
+set :bundle_bin, 'RAILS_GROUPS=web,assets,workers bundle'
+
 set :chruby_path, '/usr/local/share/chruby/chruby.sh'
 task :remote_environment do
   invoke :chruby, 'ruby-2.5'
